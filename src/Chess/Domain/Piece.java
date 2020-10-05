@@ -4,16 +4,16 @@ package Chess.Domain;
 
 public abstract class Piece 
 {
-    private final PieceColors m_color;
+    private final Color m_color;
 
-    public Piece(PieceColors color)
+    public Piece(Color color)
     {
         m_color = color;
     }
 
     public abstract boolean canMove(Cell from, Cell to);
 
-    public final PieceColors getColor()
+    public final Color getColor()
     {
         return m_color;
     }

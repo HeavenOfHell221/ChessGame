@@ -1,11 +1,11 @@
 package Chess.Domain;
 
-public enum PieceColors 
+public enum Color 
 {
     White,
     Black; 
 
-    public PieceColors opposite() 
+    public Color opposite() 
     {
         return (this == Black) ? White : Black;
     }

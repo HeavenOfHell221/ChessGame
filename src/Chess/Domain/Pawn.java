@@ -2,7 +2,7 @@ package Chess.Domain;
 
 public class Pawn extends Piece
 {
-    public Pawn(PieceColors color)
+    public Pawn(Color color)
     {
         super(color);
     }
