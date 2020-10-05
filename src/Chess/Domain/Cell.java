@@ -1,8 +1,5 @@
 package Chess.Domain;
 
-import Chess.Domain.Enums.*;
-import Chess.Domain.Utils.*;
-
 /* VALUE OBJECT */
 
 public class Cell

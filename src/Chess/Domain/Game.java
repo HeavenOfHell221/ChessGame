@@ -1,7 +1,6 @@
 package Chess.Domain;
 
 import java.util.ArrayDeque;
-import Chess.Domain.Utils.*;
 
 /* AGGREGATE */
 

@@ -1,4 +1,4 @@
-package Chess.Domain.Utils;
+package Chess.Domain;
 
 public class Debug 
 {

@@ -1,26 +1,20 @@
 package Chess.Domain;
 
 import java.util.HashMap;
-import Chess.Domain.Enums.*;
-import Chess.Domain.Pieces.*;
-import Chess.Domain.Utils.*;
-import static Chess.Domain.Enums.CellColumn.*;
-import static Chess.Domain.Enums.CellLine.*;
-import static Chess.Domain.Enums.PieceColors.*;
+import static Chess.Domain.CellColumn.*;
+import static Chess.Domain.CellLine.*;
+import static Chess.Domain.PieceColors.*;
 
 /* ENTITY */
 
 public class Chessboard
 {
-    private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
-    //private final Cell[][] m_cells;                             // Les cases du plateau
+    private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau                             // Les cases du plateau
     private final HashMap<Movement, Piece> m_piecesCaptured;    // HashMap des pièces "mortes"
 
     public Chessboard(Chessboard initialChess)
     {
-        //m_cells = new Cell[8][8];
-        initializationOfCases();
-
+        
         if(initialChess == null)
         {
             Debug.log("Nouvelle partie.");
@@ -34,6 +28,8 @@ public class Chessboard
             m_piecesOnBoard = new HashMap<>(initialChess.m_piecesOnBoard);
             m_piecesCaptured = new HashMap<>(initialChess.m_piecesCaptured);
         }
+        
+        initializationOfCases();
     }
 
     // Création des cases du plateau de jeu

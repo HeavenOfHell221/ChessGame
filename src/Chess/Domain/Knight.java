@@ -1,7 +1,4 @@
-package Chess.Domain.Pieces;
-
-import Chess.Domain.*;
-import Chess.Domain.Enums.*;
+package Chess.Domain;
 
 public class Knight extends Piece
 {

@@ -1,4 +1,4 @@
-package Chess.Domain.Enums;
+package Chess.Domain;
 
 public enum CellLine 
 {
