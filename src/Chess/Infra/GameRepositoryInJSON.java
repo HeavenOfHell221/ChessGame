@@ -1,8 +1,9 @@
 package Chess.Infra;
 
 import Chess.Domain.Game;
+import Chess.Domain.IGameRepository;
 
-public class GameRepositoryInJSON 
+public class GameRepositoryInJSON implements IGameRepository
 {
     public GameRepositoryInJSON()
     {
@@ -11,6 +12,6 @@ public class GameRepositoryInJSON
 
     public void save(Game g)
     {
-        
+
     }
 }

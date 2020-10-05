@@ -86,7 +86,7 @@ public class Chessboard
         m_piecesOnBoard.replace(key, value);
     }
 
-    public boolean movementIsValid(Movement m)
+    public boolean isMovementValid(Movement m)
     {
         Piece p = getPieceAt(m.getOrigin());
         Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null !");
