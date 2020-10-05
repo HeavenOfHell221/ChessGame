@@ -41,4 +41,9 @@ public class Game
         if(movementToCancel != null)
             m_chessboard.cancelMovement(movementToCancel);
     }
+
+    public int getID()
+    {
+        return m_gameID;
+    }
 }
