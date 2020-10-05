@@ -3,7 +3,7 @@ package Chess.Domain;
 public class Knight extends Piece
 {
 
-    public Knight(PieceColors color) 
+    public Knight(Color color) 
     {
         super(color);
     }

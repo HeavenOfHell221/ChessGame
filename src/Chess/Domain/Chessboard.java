@@ -3,39 +3,38 @@ package Chess.Domain;
 import java.util.HashMap;
 import static Chess.Domain.CellColumn.*;
 import static Chess.Domain.CellLine.*;
-import static Chess.Domain.PieceColors.*;
+import static Chess.Domain.Color.*;
 
 /* ENTITY */
 
 public class Chessboard
 {
-    private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau                             // Les cases du plateau
+    private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
     private final HashMap<Movement, Piece> m_piecesCaptured;    // HashMap des pièces "mortes"
 
     public Chessboard(Chessboard initialChess)
     {
+        CellsInitialization();
         
         if(initialChess == null)
         {
             Debug.log("Nouvelle partie.");
             m_piecesOnBoard = new HashMap<>();
             m_piecesCaptured = new HashMap<>();
-            initializationOfPieces();
+            PiecesInitialization();
         }
         else
         {
-            Debug.log("Load d'une partie déjà commencé.");
+            Debug.log("Load d'une partie déjà commencée.");
             m_piecesOnBoard = new HashMap<>(initialChess.m_piecesOnBoard);
             m_piecesCaptured = new HashMap<>(initialChess.m_piecesCaptured);
         }
-        
-        initializationOfCases();
     }
 
     // Création des cases du plateau de jeu
-    private void initializationOfCases()
+    private void CellsInitialization()
     {
-        PieceColors color = Black;
+        Color color = Black;
         
         for(CellColumn column : CellColumn.values())
         {
@@ -51,7 +50,7 @@ public class Chessboard
 
     // Création des différentes pièces
     // Placement des pièces sur leur emplacement de base
-    private void initializationOfPieces()
+    private void PiecesInitialization()
     {
         for(CellColumn column : CellColumn.values())
         {
@@ -77,7 +76,7 @@ public class Chessboard
         addNewPiece(new King(Black), Column_e, Line_8, Black);
     }
 
-    private void addNewPiece(Piece value, CellColumn column, CellLine line, PieceColors color)
+    private void addNewPiece(Piece value, CellColumn column, CellLine line, Color color)
     {
         Cell key = Cell.newFactory(column, line, color);
 

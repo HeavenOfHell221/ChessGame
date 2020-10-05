@@ -2,7 +2,7 @@ package Chess.Domain;
 
 public class Rook extends Piece
 {
-    public Rook(PieceColors color) 
+    public Rook(Color color) 
     {
         super(color);
     }

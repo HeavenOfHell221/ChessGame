@@ -21,12 +21,12 @@ public enum CellColumn
         m_string = string;
     }
 
-    public int value()
+    public int getValue()
     {
         return m_value;
     }
 
-    public String string()
+    public String getString()
     {
         return m_string;
     }

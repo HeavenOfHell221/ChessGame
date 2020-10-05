@@ -2,7 +2,7 @@ package Chess.Domain;
 
 public class Bishop extends Piece
 {
-    public Bishop(PieceColors color) 
+    public Bishop(Color color) 
     {
         super(color);
     }

@@ -6,21 +6,21 @@ public class Cell
 {
     private final CellLine m_line;
     private final CellColumn m_column;
-    private final PieceColors m_cellColor;
+    private final Color m_cellColor;
     private final String m_id;
 
-    public static Cell newFactory(CellColumn column, CellLine line, PieceColors color)
+    public static Cell newFactory(CellColumn column, CellLine line, Color color)
     {
         Debug.ASSERT(line != null && column != null && color != null, "Un attribut de la classe Case est null.");
         return new Cell(column, line, color);
     }
 
-    private Cell(CellColumn column, CellLine line, PieceColors color) 
+    private Cell(CellColumn column, CellLine line, Color color) 
     {
         m_line = line;
         m_column = column;
         m_cellColor = color;
-        m_id = "" + column.string() + line.string();
+        m_id = "" + column.getString() + line.getString();
     }
 
     public CellLine getLine() 
@@ -33,7 +33,7 @@ public class Cell
         return m_column;
     }
 
-    public PieceColors getColor() 
+    public Color getColor() 
     {
         return m_cellColor;
     }
