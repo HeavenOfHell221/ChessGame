@@ -115,10 +115,10 @@ public class Chessboard
             m_piecesCaptured.put(m, p2); // La pièce "p2" est capturé
         }
 
-        placePieceOnCase(null, m.getOrigin());
-        placePieceOnCase(p, m.getDestination());
+        placePieceOnCell(null, m.getOrigin());
+        placePieceOnCell(p, m.getDestination());
 
-        Debug.log("Successfully moved piece !");
+        Debug.log("Piece moved successfully!");
     }
 
     public void cancelMovement(Movement m)
@@ -132,11 +132,11 @@ public class Chessboard
             m_piecesCaptured.remove(m);
         }
 
-        placePieceOnCase(p, m.getOrigin());
-        placePieceOnCase(p2, m.getDestination());
+        placePieceOnCell(p, m.getOrigin());
+        placePieceOnCell(p2, m.getDestination());
     }
 
-    private void placePieceOnCase(Piece piece, Cell cell)
+    private void placePieceOnCell(Piece piece, Cell cell)
     {
         m_piecesOnBoard.replace(cell, piece);
     }
