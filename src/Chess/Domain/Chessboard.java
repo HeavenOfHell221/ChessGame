@@ -14,20 +14,21 @@ public class Chessboard
 
     public Chessboard(Chessboard initialChess)
     {
+        m_piecesOnBoard = new HashMap<>();
+        m_piecesCaptured = new HashMap<>();
+        
         CellsInitialization();
         
         if(initialChess == null)
         {
             Debug.log("Nouvelle partie.");
-            m_piecesOnBoard = new HashMap<>();
-            m_piecesCaptured = new HashMap<>();
             PiecesInitialization();
         }
         else
         {
             Debug.log("Load d'une partie déjà commencée.");
-            m_piecesOnBoard = new HashMap<>(initialChess.m_piecesOnBoard);
-            m_piecesCaptured = new HashMap<>(initialChess.m_piecesCaptured);
+            m_piecesOnBoard.putAll(initialChess.m_piecesOnBoard);
+            m_piecesCaptured.putAll(initialChess.m_piecesCaptured);
         }
     }
 
@@ -80,7 +81,7 @@ public class Chessboard
     {
         Cell key = Cell.newFactory(column, line, color);
 
-        Debug.ASSERT(!m_piecesOnBoard.containsKey(key), "Ajout d'une nouvelle pièce dans une case en contenant déjà une.");
+        Debug.ASSERT(m_piecesOnBoard.get(key) == null, "Ajout d'une nouvelle pièce dans une case en contenant déjà une.");
 
         m_piecesOnBoard.replace(key, value);
     }

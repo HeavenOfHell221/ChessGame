@@ -19,7 +19,7 @@ public class GameRepositoryInMemory implements IGameRepository
         m_memory.add(game);
     }
 
-    public Game findGameById(int gameId)
+    public Game load(int gameId)
     {
         for(Game g : m_memory)
         {
