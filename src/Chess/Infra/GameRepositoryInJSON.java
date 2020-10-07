@@ -2,9 +2,9 @@ package Chess.Infra;
 
 import Chess.Domain.Debug;
 import Chess.Domain.Game;
-import Chess.Domain.IGameRepository;
+import Chess.Domain.GameRepositoryITF;
 
-public class GameRepositoryInJSON implements IGameRepository
+public class GameRepositoryInJSON implements GameRepositoryITF
 {
     public GameRepositoryInJSON()
     {

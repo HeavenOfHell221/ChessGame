@@ -1,6 +1,6 @@
 package Chess.Domain;
 
-public interface IGameRepository
+public interface GameRepositoryITF
 {
     void save(Game g);
     Game load(int id);

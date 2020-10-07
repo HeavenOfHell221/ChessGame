@@ -3,9 +3,9 @@ package Chess.Infra;
 import java.util.HashSet;
 import java.util.Set;
 import Chess.Domain.Game;
-import Chess.Domain.IGameRepository;
+import Chess.Domain.GameRepositoryITF;
 
-public class GameRepositoryInMemory implements IGameRepository
+public class GameRepositoryInMemory implements GameRepositoryITF
 {
     Set<Game> m_memory;
 
