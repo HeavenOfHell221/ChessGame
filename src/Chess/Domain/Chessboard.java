@@ -1,5 +1,6 @@
 package Chess.Domain;
 
+import java.util.ArrayDeque;
 import java.util.HashMap;
 import static Chess.Domain.CellColumn.*;
 import static Chess.Domain.CellLine.*;
@@ -10,7 +11,7 @@ import static Chess.Domain.Color.*;
 public class Chessboard
 {
     private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
-    private final HashMap<Movement, Piece> m_piecesCaptured;    // HashMap des pièces "mortes"
+    private final HashMap<Movement, ArrayDeque<Piece>> m_piecesCaptured;    // HashMap des pièces "mortes"
 
     public Chessboard(Chessboard initialChess)
     {
@@ -112,7 +113,16 @@ public class Chessboard
 
         if(p2 != null) // Si il y a une pièce sur la case "destination"
         {
-            m_piecesCaptured.put(m, p2); // La pièce "p2" est capturé
+            if(m_piecesCaptured.containsKey(m))
+            {
+                m_piecesCaptured.get(m).addLast(p2);
+            }
+            else
+            {
+                ArrayDeque<Piece> queue = new ArrayDeque<Piece>();
+                queue.addLast(p2); 
+                m_piecesCaptured.put(m, queue);
+            }
         }
 
         placePieceOnCase(null, m.getOrigin());
@@ -128,8 +138,7 @@ public class Chessboard
 
         if(m_piecesCaptured.containsKey(m))
         {
-            p2 = m_piecesCaptured.get(m);
-            m_piecesCaptured.remove(m);
+            p2 = m_piecesCaptured.get(m).pollLast();
         }
 
         placePieceOnCase(p, m.getOrigin());

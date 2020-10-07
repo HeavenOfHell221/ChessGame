@@ -2,6 +2,8 @@ package Chess.Infra;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import Chess.Domain.Debug;
 import Chess.Domain.Game;
 import Chess.Domain.GameRepositoryITF;
 
@@ -17,6 +19,7 @@ public class GameRepositoryInMemory implements GameRepositoryITF
     public void save(Game game)
     {
         m_memory.add(game);
+        Debug.log("Sauvegarde in memory.");
     }
 
     public Game load(int gameId)
@@ -25,6 +28,7 @@ public class GameRepositoryInMemory implements GameRepositoryITF
         {
             if(g.getID() == gameId)
             {
+                Debug.log("Load avec succès.");
                 return g;
             }
         }

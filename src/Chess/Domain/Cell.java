@@ -7,7 +7,6 @@ public class Cell
     private final CellLine m_line;
     private final CellColumn m_column;
     private final Color m_cellColor;
-    private final String m_id;
 
     public static Cell newFactory(CellColumn column, CellLine line, Color color)
     {
@@ -20,7 +19,6 @@ public class Cell
         m_line = line;
         m_column = column;
         m_cellColor = color;
-        m_id = "" + column.getString() + line.getString();
     }
 
     public CellLine getLine() 
@@ -41,7 +39,7 @@ public class Cell
     @Override
     public int hashCode() 
     {
-		return m_id.hashCode();
+		return (m_column.getString() + m_line.getString()).hashCode();
 	}
 
 	@Override
