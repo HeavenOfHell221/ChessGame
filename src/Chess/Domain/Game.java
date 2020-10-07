@@ -10,11 +10,11 @@ public class Game
     private final int m_gameID;                         // L'ID unique de cette partie
     private final ArrayDeque<Movement> m_movements;     // File des mouvements effectué lors de la partie
 
-    public Game()
+    public Game(int gameId)
     {
         m_chessboard = new Chessboard(null);
         m_movements = new ArrayDeque<Movement>();
-        m_gameID = 0;
+        m_gameID = gameId;
     }
 
     // Effectue un mouvement sur le plateau s'il est valide
