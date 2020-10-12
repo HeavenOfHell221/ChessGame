@@ -10,7 +10,7 @@ import static Chess.Domain.Color.*;
 
 /* ENTITY */
 
-public class Chessboard
+public class Chessboard implements LocationOfPiecesITF
 {
     private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
     private final HashMap<Movement, ArrayDeque<Piece>> m_piecesCaptured;    // HashMap des pièces "mortes"
@@ -107,7 +107,7 @@ public class Chessboard
         Piece p = getPieceAt(m.getOrigin());
         Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null !");
 
-        return p.isMovementLegal(m) && isPathClear(p, m);
+        return p.isMovementLegal(m, this) && isPathClear(p, m);
     }
 
     public void processMovement(Movement m)
@@ -168,5 +168,11 @@ public class Chessboard
     public int getchessboardID()
     {
         return m_chessboardID;
+    }
+
+    @Override
+    public boolean isTherePieceAt(Cell cell) 
+    {
+        return m_piecesOnBoard.get(cell) != null;
     }
 }

@@ -29,9 +29,9 @@ public class Pawn extends Piece
     }
 
     @Override
-    public boolean isMovementLegal(Movement m) 
+    public boolean isMovementLegal(Movement m, LocationOfPiecesITF board) 
     {
-        return normalMove(m.getOrigin(), m.getDestination()) || captureMove(m.getOrigin(), m.getDestination());
+        return normalMove(m.getOrigin(), m.getDestination()) || captureMove(m.getOrigin(), m.getDestination(), board);
     }
 
     private boolean normalMove(Cell from, Cell to)
@@ -57,11 +57,12 @@ public class Pawn extends Piece
             || (from.getLine() == CellLine.Line_7 && getColor() == Color.Black);
     }
 
-    private boolean captureMove(Cell from, Cell to)
+    private boolean captureMove(Cell from, Cell to, LocationOfPiecesITF board)
     {
         boolean isMoveValid = false;
+        Cell c = Cell.newFactory(from.getColumn(), to.getLine());
 
-        if(to.getLine().getValue() == (from.getLine().getValue() + m_direction.getValue())
+        if(board.isTherePieceAt(c) && to.getLine().getValue() == (from.getLine().getValue() + m_direction.getValue())
         && CellColumn.getAbsDistance(from.getColumn(), to.getColumn()) == 1)
         {
             isMoveValid = true;

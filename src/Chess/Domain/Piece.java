@@ -11,7 +11,7 @@ public abstract class Piece
         m_color = color;
     }
 
-    public abstract boolean isMovementLegal(Movement m);
+    public abstract boolean isMovementLegal(Movement m, LocationOfPiecesITF board);
     public abstract boolean isPathClear(Movement m);
 
     public final Color getColor()

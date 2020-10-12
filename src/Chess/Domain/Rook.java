@@ -8,7 +8,7 @@ public class Rook extends Piece
     }
 
     @Override
-    public boolean isMovementLegal(Movement m) 
+    public boolean isMovementLegal(Movement m, LocationOfPiecesITF board) 
     {
         boolean isMoveHorizontal = (CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()) == 0) 
                                 && (CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()) != 0);

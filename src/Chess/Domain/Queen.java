@@ -8,7 +8,7 @@ public class Queen extends Piece
     }
 
     @Override
-    public boolean isMovementLegal(Movement m) 
+    public boolean isMovementLegal(Movement m, LocationOfPiecesITF board) 
     {
         return isMovementDiagonal(m) || isMovementLinear(m);
     }

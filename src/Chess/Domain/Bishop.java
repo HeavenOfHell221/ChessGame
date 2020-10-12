@@ -8,7 +8,7 @@ public class Bishop extends Piece
     }
 
     @Override
-    public boolean isMovementLegal(Movement m) 
+    public boolean isMovementLegal(Movement m, LocationOfPiecesITF board) 
     {
         int verticalDistance = CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()); 
         int horizontalDistance = CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()); 
