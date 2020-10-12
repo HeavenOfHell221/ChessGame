@@ -8,17 +8,17 @@ public class Cell
     private final CellColumn m_column;
     private final Color m_cellColor;
 
-    public static Cell newFactory(CellColumn column, CellLine line, Color color)
+    public static Cell newFactory(CellColumn column, CellLine line)
     {
-        Debug.ASSERT(line != null && column != null && color != null, "Un attribut de la classe Case est null.");
-        return new Cell(column, line, color);
+        Debug.ASSERT(line != null && column != null, "Un attribut de la classe Case est null.");
+        return new Cell(column, line);
     }
 
-    private Cell(CellColumn column, CellLine line, Color color) 
+    private Cell(CellColumn column, CellLine line) 
     {
         m_line = line;
         m_column = column;
-        m_cellColor = color;
+        m_cellColor = (line.getValue() * column.getValue() % 2) == 0 ? Color.White : Color.Black;
     }
 
     public CellLine getLine() 

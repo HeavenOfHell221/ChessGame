@@ -12,7 +12,7 @@ public class Game
 
     public Game(int gameId)
     {
-        m_chessboard = new Chessboard(null);
+        m_chessboard = new Chessboard(null, gameId);
         m_movements = new ArrayDeque<Movement>();
         m_gameID = gameId;
     }
