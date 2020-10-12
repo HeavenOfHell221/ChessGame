@@ -11,7 +11,8 @@ public abstract class Piece
         m_color = color;
     }
 
-    public abstract boolean canMove(Cell from, Cell to);
+    public abstract boolean isMovementLegal(Movement m);
+    public abstract boolean isPathClear(Movement m);
 
     public final Color getColor()
     {

@@ -14,6 +14,7 @@ public class Main
     {
         Game g = new Game(42);
         g.move(new Movement(Cell.newFactory(CellColumn.Column_a, CellLine.Line_2), Cell.newFactory(CellColumn.Column_a, CellLine.Line_8)));
+        
         GameRepositoryITF repository = new GameRepositoryInMemory();
         repository.save(g);
     }    

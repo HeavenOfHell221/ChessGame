@@ -30,4 +30,9 @@ public enum CellColumn
     {
         return m_string;
     }
+
+    public static int getAbsDistance(CellColumn from, CellColumn to)
+    {
+        return Math.abs(to.m_value - from.m_value);
+    }
 }

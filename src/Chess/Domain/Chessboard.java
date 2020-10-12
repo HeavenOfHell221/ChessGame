@@ -1,7 +1,9 @@
 package Chess.Domain;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashMap;
+
 import static Chess.Domain.CellColumn.*;
 import static Chess.Domain.CellLine.*;
 import static Chess.Domain.Color.*;
@@ -34,6 +36,8 @@ public class Chessboard
             m_piecesCaptured.putAll(initialChess.m_piecesCaptured);
         }
     }
+
+    
 
     // Création des cases du plateau de jeu
     private void CellsInitialization()
@@ -84,21 +88,26 @@ public class Chessboard
         m_piecesOnBoard.replace(key, value);
     }
 
+    private boolean isPathClear(Piece p, Movement m)
+    {
+        /*ArrayList<Cell> list = p.getPath(m);
+
+        for(Cell c : list)
+        {
+            Piece p2 = m_piecesOnBoard.get(c);
+            if(p2 != null)
+                return false;
+        }*/
+
+        return true;
+    }
+
     public boolean isMovementValid(Movement m)
     {
         Piece p = getPieceAt(m.getOrigin());
         Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null !");
 
-        /*
-            1/ Tester si le mouvement pour la pièce p existe (chaque pièce bouge d'une façon très stricte)
-            2/ Tester s'il est possible
-                2.1/ Mouvement pas en dehors du plateau
-                2.2/ Ne met pas en danger notre propre King
-                2.3/ Pion -> Il y a bien une pièce à capturé s'il essaie d'aller en diagonal 
-                etc.
-        */
-
-        return true;
+        return p.isMovementLegal(m) && isPathClear(p, m);
     }
 
     public void processMovement(Movement m)
@@ -154,5 +163,10 @@ public class Chessboard
     private Piece getPieceAt(Cell cell)
     {
         return m_piecesOnBoard.get(cell);
+    }
+
+    public int getchessboardID()
+    {
+        return m_chessboardID;
     }
 }

@@ -8,8 +8,16 @@ public class Bishop extends Piece
     }
 
     @Override
-    public boolean canMove(Cell from, Cell to) 
+    public boolean isMovementLegal(Movement m) 
+    {
+        int verticalDistance = CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()); 
+        int horizontalDistance = CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()); 
+        return verticalDistance == horizontalDistance;
+    }
+
+    @Override
+    public boolean isPathClear(Movement m) 
     {
         return false;
-    }    
+    }
 }

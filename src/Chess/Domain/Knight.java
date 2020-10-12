@@ -9,7 +9,15 @@ public class Knight extends Piece
     }
 
     @Override
-    public boolean canMove(Cell from, Cell to) 
+    public boolean isMovementLegal(Movement m) 
+    {
+        int verticalDistance = CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()); 
+        int horizontalDistance = CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()); 
+        return (verticalDistance == 1 && horizontalDistance == 2) || (verticalDistance == 2 && horizontalDistance == 1);
+    }
+
+    @Override
+    public boolean isPathClear(Movement m) 
     {
         return false;
     }

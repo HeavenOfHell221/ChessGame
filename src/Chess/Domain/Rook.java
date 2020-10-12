@@ -8,7 +8,18 @@ public class Rook extends Piece
     }
 
     @Override
-    public boolean canMove(Cell from, Cell to) 
+    public boolean isMovementLegal(Movement m) 
+    {
+        boolean isMoveHorizontal = (CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()) == 0) 
+                                && (CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()) != 0);
+        boolean isMoveVertical = (CellLine.getAbsDistance(m.getOrigin().getLine(), m.getOrigin().getLine()) != 0) 
+                                && (CellColumn.getAbsDistance(m.getOrigin().getColumn(), m.getOrigin().getColumn()) == 0);
+                                
+        return isMoveHorizontal ^ isMoveVertical;
+    }
+
+    @Override
+    public boolean isPathClear(Movement m) 
     {
         return false;
     }

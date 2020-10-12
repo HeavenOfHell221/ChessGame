@@ -24,14 +24,15 @@ public class Game
         Debug.ASSERT(m != null && m.getOrigin() != null && m.getDestination() != null, 
         "Un mouvement est null ou présente une/des case(s) null dans la méthode move(Movement m) de la classe Game !");
 
-        if(!m_chessboard.isMovementValid(m)) // Si le mouvement n'est pas valide, on effectue rien
+        if(m_chessboard.isMovementValid(m)) // Si le mouvement n'est pas valide, on effectue rien
+        {
+            m_movements.addLast(m);
+            m_chessboard.processMovement(m);
+        }
+        else
         {
             Debug.logError("Un mouvement non valide a été tenté");
-            return;
         }
-
-        m_movements.addLast(m);
-        m_chessboard.processMovement(m);
     }
 
     // Annule le dernier mouvement effectué (s'il y en a un)

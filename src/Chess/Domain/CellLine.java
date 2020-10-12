@@ -29,4 +29,9 @@ public enum CellLine
     {
         return m_string;
     }
+
+    public static int getAbsDistance(CellLine from, CellLine to)
+    {
+        return Math.abs(to.m_value - from.m_value);
+    }
 }
