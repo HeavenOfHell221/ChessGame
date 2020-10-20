@@ -7,10 +7,10 @@ import java.util.ArrayDeque;
 public class Game 
 {
     private final Chessboard m_chessboard;              // Le plateau de jeu contenant les pièces et les cases
-    private final int m_gameID;                         // L'ID unique de cette partie
+    private final long m_gameID;                         // L'ID unique de cette partie
     private final ArrayDeque<Movement> m_movements;     // File des mouvements effectué lors de la partie
 
-    public Game(int gameId)
+    public Game(long gameId)
     {
         m_chessboard = new Chessboard(null, gameId);
         m_movements = new ArrayDeque<Movement>();
@@ -43,7 +43,7 @@ public class Game
             m_chessboard.cancelMovement(movementToCancel);
     }
 
-    public int getID()
+    public long getID()
     {
         return m_gameID;
     }

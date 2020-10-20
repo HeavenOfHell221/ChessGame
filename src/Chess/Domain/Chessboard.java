@@ -1,7 +1,6 @@
 package Chess.Domain;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static Chess.Domain.CellColumn.*;
@@ -14,9 +13,9 @@ public class Chessboard implements LocationOfPiecesITF
 {
     private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
     private final HashMap<Movement, ArrayDeque<Piece>> m_piecesCaptured;    // HashMap des pièces "mortes"
-    private final int m_chessboardID;
+    private final long m_chessboardID;
 
-    public Chessboard(Chessboard initialChess, int chessboardID)
+    public Chessboard(Chessboard initialChess, long chessboardID)
     {
         m_chessboardID = chessboardID;
         m_piecesOnBoard = new HashMap<>();
@@ -165,7 +164,7 @@ public class Chessboard implements LocationOfPiecesITF
         return m_piecesOnBoard.get(cell);
     }
 
-    public int getchessboardID()
+    public long getchessboardID()
     {
         return m_chessboardID;
     }

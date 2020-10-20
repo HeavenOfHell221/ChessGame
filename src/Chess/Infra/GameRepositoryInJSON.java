@@ -17,7 +17,7 @@ public class GameRepositoryInJSON implements GameRepositoryITF
         Debug.log("Save en JSON.");
     }
 
-    public Game load(int id)
+    public Game load(long id)
     {
         // On lit du JSON
         return null;

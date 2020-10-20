@@ -22,7 +22,7 @@ public class GameRepositoryInMemory implements GameRepositoryITF
         Debug.log("Sauvegarde in memory.");
     }
 
-    public Game load(int gameId)
+    public Game load(long gameId)
     {
         for(Game g : m_memory)
         {
