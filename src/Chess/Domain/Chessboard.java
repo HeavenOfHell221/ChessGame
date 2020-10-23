@@ -25,12 +25,12 @@ public class Chessboard implements LocationOfPiecesITF
         
         if(initialChess == null)
         {
-            Debug.log("Nouvelle partie.");
+            Debug.log("Nouveau Chessboard");
             PiecesInitialization();
         }
         else
         {
-            Debug.log("Load d'une partie déjà commencée.");
+            Debug.log("Load d'un chessboard");
             m_piecesOnBoard.putAll(initialChess.m_piecesOnBoard);
             m_piecesCaptured.putAll(initialChess.m_piecesCaptured);
         }
@@ -104,7 +104,7 @@ public class Chessboard implements LocationOfPiecesITF
     public boolean isMovementValid(Movement m)
     {
         Piece p = getPieceAt(m.getOrigin());
-        Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null !");
+        Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null sur la cellule " + m.getOrigin().toString());
 
         return p.isMovementLegal(m, this) && isPathClear(p, m);
     }

@@ -49,4 +49,11 @@ public class Cell
         Cell other = (Cell) obj;
         return (m_column == other.m_column) && (m_line == other.m_line);
     }
+
+    @Override
+    public String toString() {
+        return "Cell [" + m_column.getString() + ", " + m_line.getString() + "]";
+    }
+
+    
 }

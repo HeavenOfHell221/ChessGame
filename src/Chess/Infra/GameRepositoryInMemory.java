@@ -19,7 +19,7 @@ public class GameRepositoryInMemory implements GameRepositoryITF
     public void save(Game game)
     {
         m_memory.add(game);
-        Debug.log("Sauvegarde in memory.");
+        Debug.log("Sauvegarde in memory ID = " + game.getID());
     }
 
     public Game load(long gameId)

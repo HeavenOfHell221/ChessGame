@@ -1,6 +1,5 @@
 package Chess.Application;
 
-import Chess.Domain.Debug;
 import Chess.Domain.Game;
 import Chess.Domain.GameFactory;
 import Chess.Domain.GameRepositoryITF;
@@ -8,31 +7,34 @@ import Chess.Domain.Movement;
 
 public class GameService 
 {
-    private Game m_cache;
     private final GameRepositoryITF m_repo;
+    private final CommandToExecute m_cToExecute;
+    private long m_id = 0;
 
-    public GameService(GameRepositoryITF repo) 
+    public GameService(GameRepositoryITF repo, CommandToExecute cToExecute) 
     {
         m_repo = repo;
+        m_cToExecute = cToExecute;
     }
 
-    public long createNewGame() {
-        long id = System.currentTimeMillis();
-        GameFactory gFactory = new GameFactory();
-        m_cache = gFactory.gameFactory(id);
-        m_repo.save(m_cache);
-
+    public long createNewGame() 
+    {
+        //long id = System.currentTimeMillis(); // ID
+        long id = m_id++;
+        Game g = new GameFactory().gameFactory(id); // New Game
+        CommandITF c = new SaveGameCommand(m_repo, g); // Command
+        m_cToExecute.addCommand(c);
         return id;
     }
 
     public void move(long gameId, Movement m)
     {
-        Debug.ASSERT(m_cache != null, "On essai de faire un mouvement sur une partie non créée.");
-        
-        if(m_cache.getID() != gameId)
-            m_cache = m_repo.load(gameId);
-
-        m_cache.move(m);
-        m_repo.save(m_cache);
+        Game g = m_repo.load(gameId);
+        if(g != null)
+        {
+            g.move(m);
+            CommandITF c = new SaveGameCommand(m_repo, g); // Command
+            m_cToExecute.addCommand(c);
+        }
     }
 }
