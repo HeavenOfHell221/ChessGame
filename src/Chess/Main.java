@@ -1,11 +1,13 @@
 package Chess;
 
-import Chess.Application.CommandToExecute;
+import Chess.Application.CommandsToExecute;
 import Chess.Application.GameService;
+import Chess.Application.LoadGameQuery;
 import Chess.Application.ThreadCommand;
 import Chess.Domain.Cell;
 import Chess.Domain.CellColumn;
 import Chess.Domain.CellLine;
+import Chess.Domain.GameRepositoryITF;
 import Chess.Domain.Movement;
 import Chess.Infra.GameRepositoryInMemory;
 
@@ -13,14 +15,16 @@ public class Main
 {
     public static void main(String[] args) 
     {
-        CommandToExecute commandToExecute = new CommandToExecute();
-        GameService service = new GameService(new GameRepositoryInMemory(), commandToExecute);
+        CommandsToExecute commandsToExecute = new CommandsToExecute();
+        GameRepositoryITF gameRepository = new GameRepositoryInMemory();
+        LoadGameQuery loadGameQuery = new LoadGameQuery(gameRepository);
+        GameService service = new GameService(gameRepository, commandsToExecute, loadGameQuery);
         
         Thread threads[] = new Thread[6];
 
         for(int i = 0; i < threads.length; i++)
         {
-            ThreadCommand threadCommand = new ThreadCommand(commandToExecute);
+            ThreadCommand threadCommand = new ThreadCommand(commandsToExecute);
             threads[i] = new Thread(threadCommand, "threadCommand " + i);
             threads[i].setDaemon(false);
             threads[i].start();
@@ -35,10 +39,7 @@ public class Main
         
         for(int i = 0; i < ids.length; i++)
         {
-            service.move(ids[i], new Movement(Cell.newFactory(CellColumn.Column_a, CellLine.Line_2), Cell.newFactory(CellColumn.Column_a, CellLine.Line_3)));
+            service.moveAutoSave(ids[i], new Movement(Cell.newFactory(CellColumn.Column_a, CellLine.Line_2), Cell.newFactory(CellColumn.Column_a, CellLine.Line_3)));
         }
-        
-        
-        commandToExecute.stopThreads();
     }    
 }

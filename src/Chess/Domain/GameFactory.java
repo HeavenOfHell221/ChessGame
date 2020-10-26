@@ -7,7 +7,7 @@ public class GameFactory
 
     }    
 
-    public Game gameFactory(long gameId)
+    public Game CreateNewGame(long gameId)
     {
         return new Game(gameId);
     }

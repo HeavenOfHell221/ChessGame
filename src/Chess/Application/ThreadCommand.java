@@ -2,9 +2,9 @@ package Chess.Application;
 
 public class ThreadCommand implements Runnable
 {
-    private final CommandToExecute m_commandToExecute;
+    private final CommandsToExecute m_commandToExecute;
 
-    public ThreadCommand(CommandToExecute commandToExecute)
+    public ThreadCommand(CommandsToExecute commandToExecute)
     {
         m_commandToExecute = commandToExecute;
     }
@@ -12,9 +12,9 @@ public class ThreadCommand implements Runnable
     @Override
     public void run() 
     {
-        while(!m_commandToExecute.getStopThreads())
+        while(true)
         {
-            CommandITF c = m_commandToExecute.getCommand();
+            CommandITF c = m_commandToExecute.pop();
             if(c != null)
             {
                 c.exec(); // Execute la commande
