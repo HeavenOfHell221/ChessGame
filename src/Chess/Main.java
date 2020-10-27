@@ -17,8 +17,7 @@ public class Main
     {
         CommandsToExecute commandsToExecute = new CommandsToExecute();
         GameRepositoryITF gameRepository = new GameRepositoryInMemory();
-        LoadGameQuery loadGameQuery = new LoadGameQuery(gameRepository);
-        GameService service = new GameService(gameRepository, commandsToExecute, loadGameQuery);
+        GameService service = new GameService(gameRepository, commandsToExecute);
         
         Thread threads[] = new Thread[6];
 
