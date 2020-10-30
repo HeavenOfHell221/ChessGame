@@ -9,6 +9,7 @@ public class Movement
 
     public Movement(Cell from, Cell to)
     {
+        Debug.ASSERT(from != null && to != null, "Creation d'un mouvement ayant une cellule vide!");
         m_origin = from;
         m_destination = to;
     }

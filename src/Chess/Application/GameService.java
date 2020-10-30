@@ -5,14 +5,14 @@ import Chess.Domain.GameFactory;
 import Chess.Domain.GameRepositoryITF;
 import Chess.Domain.Movement;
 
-/* STATELESS */
+/* CLASS STATELESS */
 
 public class GameService 
 {
     private final GameRepositoryITF m_repo;
     private final CommandsToExecute m_cToExecute;
     private final LoadGameQuery m_query;
-    private long m_id = 0;
+    private long m_id = 0; // Utilisation d'une variable id car la boucle du Main crée plusieurs game dans la même milliseconde...
 
     public GameService(GameRepositoryITF repo, CommandsToExecute cToExecute) 
     {
@@ -23,7 +23,7 @@ public class GameService
 
     public long createNewGame() 
     {
-        //long id = System.currentTimeMillis(); // ID
+        //long id = System.currentTimeMillis();
         long id = m_id++;
         Game g = new GameFactory().CreateNewGame(id); // New Game
         save_async(g);
@@ -41,7 +41,7 @@ public class GameService
         }
     }
   
-    public void moveNoSave(long gameId, Movement m)
+    public void move(long gameId, Movement m)
     {
         Game g = m_query.loadGame(gameId); // Query
         

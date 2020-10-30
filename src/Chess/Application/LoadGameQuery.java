@@ -26,9 +26,9 @@ public class LoadGameQuery
 
         if(!m_gamesCache.containsKey(id)) // Si le game n'est pas dans le cache
         {
-            gameToReturn = m_repo.load(id); // On le load via le repository
+            gameToReturn = m_repo.load(id);
             Debug.ASSERT(gameToReturn != null, "le load à partir du repository du jeu ID = " + id + " a échoué.");
-            m_gamesCache.put(id, gameToReturn); // On le met dans le cache
+            m_gamesCache.put(id, gameToReturn); 
         }
         else
             gameToReturn = m_gamesCache.get(id); // On le load via le cache

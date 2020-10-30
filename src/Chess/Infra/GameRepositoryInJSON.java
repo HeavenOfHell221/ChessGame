@@ -13,13 +13,11 @@ public class GameRepositoryInJSON implements GameRepositoryITF
 
     public void save(Game g)
     {
-        // On save en JSON
         Debug.log("Save en JSON.");
     }
 
     public Game load(long id)
     {
-        // On lit du JSON
         return null;
     }
 }
