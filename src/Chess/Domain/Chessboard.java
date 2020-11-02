@@ -12,28 +12,32 @@ import static Chess.Domain.Color.*;
 public class Chessboard implements LocationOfPiecesITF
 {
     private final HashMap<Cell, Piece> m_piecesOnBoard;         // HashMap des pièces actuellement sur le plateau
-    private final HashMap<Movement, ArrayDeque<Piece>> m_piecesCaptured;    // HashMap des pièces "mortes"
+    private final HashMap<Movement, ArrayDeque<Piece>> m_piecesCaptured;   // HashMap des pièces "mortes"
     private final long m_chessboardID;
 
-    public Chessboard(Chessboard initialChess, long chessboardID)
+
+    public Chessboard(long chessboardID)
     {
         m_chessboardID = chessboardID;
+
+        CellsInitialization();
+
         m_piecesOnBoard = new HashMap<>();
         m_piecesCaptured = new HashMap<>();
+
+        PiecesInitialization();
+    }
+
+    public Chessboard(long chessboardID, Chessboard initialChess)
+    {
+        Debug.ASSERT(initialChess != null, "Création d'un chessboard failed.");
+        
+        m_chessboardID = chessboardID;
         
         CellsInitialization();
-        
-        if(initialChess == null)
-        {
-            Debug.log("Nouveau Chessboard");
-            PiecesInitialization();
-        }
-        else
-        {
-            Debug.log("Load d'un chessboard");
-            m_piecesOnBoard.putAll(initialChess.m_piecesOnBoard);
-            m_piecesCaptured.putAll(initialChess.m_piecesCaptured);
-        }
+
+        m_piecesOnBoard = new HashMap<>(initialChess.m_piecesOnBoard);
+        m_piecesCaptured = new HashMap<>(initialChess.m_piecesCaptured);
     }
 
     
@@ -87,26 +91,12 @@ public class Chessboard implements LocationOfPiecesITF
         m_piecesOnBoard.replace(key, value);
     }
 
-    private boolean isPathClear(Piece p, Movement m)
-    {
-        /*ArrayList<Cell> list = p.getPath(m);
-
-        for(Cell c : list)
-        {
-            Piece p2 = m_piecesOnBoard.get(c);
-            if(p2 != null)
-                return false;
-        }*/
-
-        return true;
-    }
-
     public boolean isMovementValid(Movement m)
     {
         Piece p = getPieceAt(m.getOrigin());
         Debug.ASSERT(p != null, "On essai d'effectuer un mouvement avec une pièce null sur la cellule " + m.getOrigin().toString());
 
-        return p.isMovementLegal(m, this) && isPathClear(p, m);
+        return p.isMovementLegal(m, this);
     }
 
     public void processMovement(Movement m)

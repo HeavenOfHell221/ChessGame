@@ -10,11 +10,25 @@ public class Game
     private final long m_gameID;                        
     private final ArrayDeque<Movement> m_movements;   
 
-    public Game(long gameId)
+    public Game(long gameID)
     {
-        m_chessboard = new Chessboard(null, gameId);
+        m_gameID = gameID;
+        m_chessboard = new Chessboard(gameID);
         m_movements = new ArrayDeque<Movement>();
-        m_gameID = gameId;
+    }
+
+    public Game(long gameID, Game initGame)
+    {
+        Debug.ASSERT(initGame != null, "Création d'un game failed.");
+        m_gameID = gameID;
+        m_chessboard = new Chessboard(gameID, initGame.m_chessboard);
+        m_movements = new ArrayDeque<Movement>(initGame.m_movements);
+    }
+
+    public Game getCopy()
+    {
+        Game c = new Game(this.m_gameID, this);
+        return c;
     }
 
     public void move(Movement m)

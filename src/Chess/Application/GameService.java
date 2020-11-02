@@ -1,7 +1,6 @@
 package Chess.Application;
 
 import Chess.Domain.Game;
-import Chess.Domain.GameFactory;
 import Chess.Domain.GameRepositoryITF;
 import Chess.Domain.Movement;
 
@@ -25,7 +24,7 @@ public class GameService
     {
         //long id = System.currentTimeMillis();
         long id = m_id++;
-        Game g = new GameFactory().CreateNewGame(id); // New Game
+        Game g = new Game(id); // New Game
         save_async(g);
         return id;
     }
@@ -53,6 +52,8 @@ public class GameService
 
     private void save_async(Game g)
     {
-        m_cToExecute.push(new SaveGameCommand(m_repo, g));
+        Game gCopied = g.getCopy();
+        SaveGameCommand command = new SaveGameCommand(m_repo, gCopied); 
+        m_cToExecute.push(command);
     }
 }
